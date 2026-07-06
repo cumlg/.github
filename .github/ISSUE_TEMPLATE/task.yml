@@ -1,0 +1,19 @@
+name: Task
+description: A unit of work that isn't an experiment
+title: "[task] "
+labels: ["task"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What needs doing
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: Definition of done
+  - type: input
+    id: due
+    attributes:
+      label: Target date (optional)

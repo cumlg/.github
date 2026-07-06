@@ -1,0 +1,31 @@
+name: Experiment
+description: Plan and record a single experiment or run
+title: "[exp] "
+labels: ["experiment"]
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis / question
+      description: What are you testing, and what do you expect to see?
+    validations:
+      required: true
+  - type: input
+    id: dataset
+    attributes:
+      label: Dataset version
+      description: Roboflow version, DVC hash, or W&B artifact
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup / config
+      description: Model, key hyperparameters, branch/commit
+  - type: input
+    id: wandb
+    attributes:
+      label: W&B run link
+  - type: textarea
+    id: result
+    attributes:
+      label: Result / conclusion
+      description: Fill in after running — what happened and the next step
