@@ -15,7 +15,7 @@ The one-stop reference for how we work. Edit via pull request.
 | Official / external / long | **Email** |
 
 ## Repositories
-- One repo per **workstream**, named `<grant>-<workstream>` (e.g. `linkage-crack-detection`).
+- One repo per **workstream**, named `<project>-<workstream>` (e.g. `linkage-crack-detection`).
 - `project-template` — start new repos from this ("Use this template").
 - `lab-toolkit` — shared code; import from here instead of copying.
 
