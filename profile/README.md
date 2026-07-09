@@ -3,6 +3,8 @@
 Machine learning and AI for structural engineering — infrastructure monitoring,
 bridge digital twins, and simulation.
 
+📖 **Handbook:** https://cumlg.github.io/handbook/
+
 ## Active projects
 - **DECRA** — agentic AI for intelligent infrastructure monitoring
 - **Linkage** — damage detection & quantification for bridge digital twins
@@ -10,4 +12,5 @@ bridge digital twins, and simulation.
 
 ## How we work
 Work is tracked as GitHub issues on project boards; each workstream has its own repo,
-started from `project-template`. See the group handbook in the `.github` repository.
+started from `project-template`. See the **[group handbook](https://cumlg.github.io/handbook/)**
+for git & PR conventions, experiments, the weekly rhythm, and more.
