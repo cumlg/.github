@@ -14,7 +14,9 @@ on:
         type: boolean
         default: false
 
-permissions: {}
+# Only what actions/checkout needs; the board write uses BOARD_SYNC_TOKEN.
+permissions:
+  contents: read
 
 concurrency:
   group: board-sync
