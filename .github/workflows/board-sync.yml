@@ -1,0 +1,40 @@
+name: Board sync
+
+# Adds every open issue across the workstream repos to the group board.
+# GITHUB_TOKEN cannot write to organisation projects, so this needs a PAT
+# stored as the BOARD_SYNC_TOKEN secret. Without it the job no-ops quietly.
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List what would change without touching the board"
+        type: boolean
+        default: false
+
+# Only what actions/checkout needs; the board write uses BOARD_SYNC_TOKEN.
+permissions:
+  contents: read
+
+concurrency:
+  group: board-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sync the board
+        env:
+          GH_TOKEN: ${{ secrets.BOARD_SYNC_TOKEN }}
+        run: |
+          python scripts/board_sync.py \
+            ${{ inputs.dry_run && '--dry-run' || '' }}
