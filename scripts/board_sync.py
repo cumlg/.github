@@ -83,7 +83,10 @@ query($org:String!, $cursor:String) {
       pageInfo { hasNextPage endCursor }
       nodes {
         name
-        issues(first:100, states:OPEN) { nodes { id number title } }
+        issues(first:100, states:OPEN) {
+          pageInfo { hasNextPage endCursor }
+          nodes { id number title }
+        }
       }
     }
   }
@@ -122,6 +125,18 @@ def load_project():
         cursor = page["endCursor"]
 
 
+ISSUES_Q = """
+query($org:String!, $repo:String!, $cursor:String) {
+  repository(owner:$org, name:$repo) {
+    issues(first:100, after:$cursor, states:OPEN) {
+      pageInfo { hasNextPage endCursor }
+      nodes { id number title }
+    }
+  }
+}
+"""
+
+
 def load_repos():
     repos, cursor = [], None
     while True:
@@ -129,8 +144,18 @@ def load_repos():
         block = data["organization"]["repositories"]
         repos.extend(block["nodes"])
         if not block["pageInfo"]["hasNextPage"]:
-            return repos
+            break
         cursor = block["pageInfo"]["endCursor"]
+    # A repo past 100 open issues spills onto extra pages; walk them so
+    # older issues don't silently drop out of the sync.
+    for repo in repos:
+        page = repo["issues"]["pageInfo"]
+        while page["hasNextPage"]:
+            data = gql(ISSUES_Q, org=ORG, repo=repo["name"], cursor=page["endCursor"])
+            block = data["repository"]["issues"]
+            repo["issues"]["nodes"].extend(block["nodes"])
+            page = block["pageInfo"]
+    return repos
 
 
 def option_id(field, name):
