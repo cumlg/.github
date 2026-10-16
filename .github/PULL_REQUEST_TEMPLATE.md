@@ -7,6 +7,6 @@ Closes #
 
 ## Checklist
 - [ ] Runs / tests pass locally
-- [ ] Data & models versioned (DVC / W&B), not committed to git
-- [ ] W&B run linked (if an experiment):
+- [ ] No data, checkpoints or large files committed (DVC / W&B / storage, not git)
+- [ ] Result recorded on the linked issue (if an experiment)
 - [ ] Follows `CLAUDE.md` conventions

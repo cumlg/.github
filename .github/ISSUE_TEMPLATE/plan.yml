@@ -1,0 +1,32 @@
+name: Plan
+description: A paper, a milestone deliverable, or another multi-week piece of work that other issues feed into
+title: "[plan] "
+labels: ["plan"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What this delivers and why it matters — one paragraph
+    validations:
+      required: true
+  - type: input
+    id: deliverable
+    attributes:
+      label: Deliverable
+      description: The concrete thing — "manuscript submitted to AutCon", "M2 report + slides", "surrogate model v1 handed to DoT"
+    validations:
+      required: true
+  - type: input
+    id: due
+    attributes:
+      label: Target date
+    validations:
+      required: true
+  - type: textarea
+    id: parts
+    attributes:
+      label: Work packages
+      description: The issues that make it up, as a checklist — add them as you open them
+      value: |
+        - [ ] #

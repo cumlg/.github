@@ -9,10 +9,11 @@ body:
       label: What needs doing
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: done
     attributes:
       label: Definition of done
+      description: One sentence — what exists when this is closed (a figure, a script, a section, a decision)
   - type: input
     id: due
     attributes:
